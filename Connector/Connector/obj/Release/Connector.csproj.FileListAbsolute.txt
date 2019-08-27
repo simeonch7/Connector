@@ -1,0 +1,9 @@
+C:\Users\simeon.chakarov\source\repos\Connector\Connector\bin\Release\Connector.exe.config
+C:\Users\simeon.chakarov\source\repos\Connector\Connector\bin\Release\Connector.exe
+C:\Users\simeon.chakarov\source\repos\Connector\Connector\bin\Release\Connector.pdb
+C:\Users\simeon.chakarov\source\repos\Connector\Connector\obj\Release\Connector.csprojAssemblyReference.cache
+C:\Users\simeon.chakarov\source\repos\Connector\Connector\obj\Release\Connector.csproj.GenerateResource.cache
+C:\Users\simeon.chakarov\source\repos\Connector\Connector\obj\Release\Connector.csproj.CoreCompileInputs.cache
+C:\Users\simeon.chakarov\source\repos\Connector\Connector\obj\Release\Connector.exe
+C:\Users\simeon.chakarov\source\repos\Connector\Connector\obj\Release\Connector.pdb
+C:\Users\simeon.chakarov\source\repos\Connector\Connector\obj\Release\Connector.MainForm.resources
