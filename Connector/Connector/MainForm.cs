@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,7 +16,6 @@ namespace Connector
 {
     public partial class MainForm : Form
     {
-
         public static List<String> queryInfoList = new List<String>();
         public static List<String> colsNameList = new List<String>();
 
@@ -26,6 +26,9 @@ namespace Connector
         {
             InitializeComponent();
             label2.Text = "This Service's IP: " + getIPAddress();
+            Console.WriteLine("starting");
+            Listener.listen();
+/*            StartServer();*/
         }
 
         private void ExecuteRequest(String IP, String DBName, String userName, String DBPassword, bool isMssql)
@@ -67,7 +70,7 @@ namespace Connector
                 reader.Close();
                 conn.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Can not open Connection!", "Oops!");
             }
@@ -104,6 +107,7 @@ namespace Connector
                 isMssql = true;
             }
             ExecuteRequest(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, isMssql);
+            
         }
 
         private void Button2_Click(object sender, EventArgs e)
@@ -111,9 +115,33 @@ namespace Connector
             Application.Exit();
         }
 
-        private String getIPAddress()
+        public static String getIPAddress()
         {
-            return new WebClient().DownloadString("http://icanhazip.com");
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
         }
+
+
+       /* public static void StartServer()
+        {
+            var httpListener = new HttpListener();
+            Listener server = new Listener(httpListener, "http://localhost:4444/", ProcessYourResponse);
+            server.Start();
+        }
+
+        public static byte[] ProcessYourResponse(string test)
+        {
+            Console.WriteLine(test);
+            return new byte[0]; // TODO when you want return some response
+        }
+*/
+
     }
 }

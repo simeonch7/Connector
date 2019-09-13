@@ -7,3 +7,12 @@ C:\Users\simeon.chakarov\source\repos\Connector\Connector\obj\Release\Connector.
 C:\Users\simeon.chakarov\source\repos\Connector\Connector\obj\Release\Connector.exe
 C:\Users\simeon.chakarov\source\repos\Connector\Connector\obj\Release\Connector.pdb
 C:\Users\simeon.chakarov\source\repos\Connector\Connector\obj\Release\Connector.MainForm.resources
+D:\Projects - C#\Connector\Connector\Connector\bin\Release\Connector.exe.config
+D:\Projects - C#\Connector\Connector\Connector\bin\Release\Connector.exe
+D:\Projects - C#\Connector\Connector\Connector\bin\Release\Connector.pdb
+D:\Projects - C#\Connector\Connector\Connector\obj\Release\Connector.csprojAssemblyReference.cache
+D:\Projects - C#\Connector\Connector\Connector\obj\Release\Connector.MainForm.resources
+D:\Projects - C#\Connector\Connector\Connector\obj\Release\Connector.csproj.GenerateResource.cache
+D:\Projects - C#\Connector\Connector\Connector\obj\Release\Connector.csproj.CoreCompileInputs.cache
+D:\Projects - C#\Connector\Connector\Connector\obj\Release\Connector.exe
+D:\Projects - C#\Connector\Connector\Connector\obj\Release\Connector.pdb
