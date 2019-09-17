@@ -1,2 +1,2 @@
 # Connector
-Some service for extracting information from DB in proggress
+Some service for extracting information from DB
