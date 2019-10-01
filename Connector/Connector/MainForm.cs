@@ -14,29 +14,77 @@ using System.Windows.Forms;
 
 namespace Connector
 {
+
     public partial class MainForm : Form
     {
+        static bool isMssql = false;
+
         public static List<String> queryInfoList = new List<String>();
         public static List<String> colsNameList = new List<String>();
 
-        String querySQL = "SELECT * FROM Goods";
-        String separator = "^";
+        const String  separator = "^";
 
         public MainForm()
         {
             InitializeComponent();
-            label2.Text = "This Service's IP: " + getIPAddress();
             Console.WriteLine("starting");
-            Listener.listen();
-/*            StartServer();*/
+            label2.Text = "This Service\'s IP: " + GetIPAddress();
         }
 
-        private void ExecuteRequest(String IP, String DBName, String userName, String DBPassword, bool isMssql)
+        public List<string> ReturnReportsInformation()
         {
+            return queryInfoList;
+        }
+
+        public List<string> ReturnReportsColumnNames()
+        {
+            return colsNameList;
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            Listener.Listen();
+            foreach (Control child in this.Controls)
+            {
+                TextBox textBox = child as TextBox;
+                if (textBox != null)
+                {
+                    if (string.IsNullOrWhiteSpace(textBox.Text))
+                    {
+                        MessageBox.Show("Please fill all the information we need!");
+                        return;
+                    }
+                }
+            }
+            if (radioButton1.Checked == true)
+            {
+                isMssql = true;
+            }
+            ExecuteRequest();
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        public void ExecuteRequest()
+        {
+            DBConnect(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, isMssql);
+        }
+
+        private void DBConnect(string IP, string DBName, string userName, string DBPassword, bool isMssql)
+        {
+
+            string querySQL;
+
             SqlConnection conn = new SqlConnection("Server=" + IP + "; " + "Database=" + DBName + "; " + "User Id=" + userName + "; " + "Password=" + DBPassword + ";");
             try
             {
                 conn.Open();
+                
+                querySQL = XMLBuilder.XMLBuild(isMssql);
+
 
                 SqlCommand cmd = new SqlCommand(querySQL, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -45,7 +93,6 @@ namespace Connector
                 {
                     colsNameList.Add(reader.GetName(i));
                 }
-
                 while (reader.Read())
                 {
                     string CurrentRow = "";
@@ -67,55 +114,17 @@ namespace Connector
                     }
                     queryInfoList.Add(CurrentRow);
                 }
+                cmd.Dispose();
                 reader.Close();
-                conn.Close();
             }
             catch (Exception)
             {
                 MessageBox.Show("Can not open Connection!", "Oops!");
             }
+            conn.Close();
         }
 
-        public List<String> ReturnReportsInformation()
-        {
-            return queryInfoList;
-        }
-
-        public List<String> ReturnReportsColumnNames()
-        {
-            return colsNameList;
-        }
-
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            foreach (Control child in this.Controls)
-            {
-                TextBox textBox = child as TextBox;
-                if (textBox != null)
-                {
-                    if (string.IsNullOrWhiteSpace(textBox.Text))
-                    {
-                        MessageBox.Show("Please fill all the information we need!");
-                        return;
-                    }
-                }
-            }
-            bool isMssql = false;
-            if (radioButton1.Checked == true)
-            {
-                isMssql = true;
-            }
-            ExecuteRequest(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, isMssql);
-            
-        }
-
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        public static String getIPAddress()
+        public static string GetIPAddress()
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());
             foreach (var ip in host.AddressList)
@@ -127,21 +136,5 @@ namespace Connector
             }
             throw new Exception("No network adapters with an IPv4 address in the system!");
         }
-
-
-       /* public static void StartServer()
-        {
-            var httpListener = new HttpListener();
-            Listener server = new Listener(httpListener, "http://localhost:4444/", ProcessYourResponse);
-            server.Start();
-        }
-
-        public static byte[] ProcessYourResponse(string test)
-        {
-            Console.WriteLine(test);
-            return new byte[0]; // TODO when you want return some response
-        }
-*/
-
     }
 }

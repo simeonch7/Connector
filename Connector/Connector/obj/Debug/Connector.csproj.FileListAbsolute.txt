@@ -10,9 +10,9 @@ C:\Users\simeon.chakarov\source\repos\Connector\Connector\obj\Debug\Connector.cs
 D:\Projects - C#\Connector\Connector\Connector\bin\Debug\Connector.exe.config
 D:\Projects - C#\Connector\Connector\Connector\bin\Debug\Connector.exe
 D:\Projects - C#\Connector\Connector\Connector\bin\Debug\Connector.pdb
-D:\Projects - C#\Connector\Connector\Connector\obj\Debug\Connector.csprojAssemblyReference.cache
 D:\Projects - C#\Connector\Connector\Connector\obj\Debug\Connector.MainForm.resources
 D:\Projects - C#\Connector\Connector\Connector\obj\Debug\Connector.csproj.GenerateResource.cache
 D:\Projects - C#\Connector\Connector\Connector\obj\Debug\Connector.csproj.CoreCompileInputs.cache
 D:\Projects - C#\Connector\Connector\Connector\obj\Debug\Connector.exe
 D:\Projects - C#\Connector\Connector\Connector\obj\Debug\Connector.pdb
+D:\Projects - C#\Connector\Connector\Connector\obj\Debug\Connector.csprojAssemblyReference.cache
